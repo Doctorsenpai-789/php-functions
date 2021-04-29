@@ -1,11 +1,4 @@
 <?php
-// $firstdate = new DateTime("2007-03-24 ");
-// $seconddate = new DateTime(" 2009-06-26");
-// $difference = $firstdate->diff($seconddate);
-// echo "Number 1 <br> <br>";
-
-// echo "Difference : " . $difference->y . " years, " . $difference->m." months, ".$difference->d." days ";
-
 
 class MinusDate{
     public $firstdate ;
@@ -20,19 +13,14 @@ class MinusDate{
     }
     function get_seconddate(){
         return $this->seconddate." - seconddate";
-    }
-    function get_diff(){
-        $diff = abs(strtotime($this->seconddate) - strtotime($this->firstdate));
-        $years = floor($diff / (365*60*60*24));
-        $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-        $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-        echo "Difference : ", $years." years ", $months." months ", $days." days ";
         
     }
-
-   
+    function get_diff(){      
+       $difference = (new DateTime($this->firstdate))->diff (new DateTime($this->seconddate));
+       return "Difference : " . $difference->y . " years, " . $difference->m." months, ".$difference->d." days ";
+    } 
 }
-$dateTime = new MinusDate("2007-03-1","2009-06-2");
+$dateTime = new MinusDate("1981-11-03","2013-09-04");
 echo $dateTime->get_firstdate();
 echo "<br>";
 echo $dateTime->get_seconddate();
